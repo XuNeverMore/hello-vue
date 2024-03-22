@@ -1,5 +1,6 @@
 <template>
   <div>
+    <a href="https://github.com/timdream/wordcloud2.js/tree/gh-pages" target="_blank">Link</a>
     <input v-model="words" />
     <canvas ref="canvas"></canvas>
   </div>
@@ -14,13 +15,13 @@ onMounted(() => {
     if (words.value !== '') {
       var wrodList = words.value.split(/,/)
       wrodList = wrodList.map((item, index, m) => {
-        return [item, 30 + index]
+        return [item, 1 + index]
       })
       console.log(wrodList)
       WordCloud(canvas.value, {
         list: wrodList,
-        fontWeight: 'bold',
-        fontSize: '18px'
+        minSize: '50px',
+        fontWeight: 'bold'
       })
     }
   })
@@ -28,7 +29,7 @@ onMounted(() => {
 </script>
 <style scoped>
 canvas {
-  background-color: gray;
+  border: 0.1rem solid #000;
   width: 80vh;
   height: 60vh;
 }

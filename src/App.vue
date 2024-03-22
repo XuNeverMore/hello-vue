@@ -5,12 +5,14 @@ import router from './router'
 </script>
 
 <template>
-  <div style="position: fixed; top: 0; left: 0; padding: 1rem">
-    <RouterLink v-for="(item, index) in router.getRoutes()" :key="index" :to="item.path">{{
-      item.name
-    }}</RouterLink>
-  </div>
-  <!-- <header>
+  <div>
+    <div class="top-bar">
+      <RouterLink v-for="(item, index) in router.getRoutes()" :key="index" :to="item.path">{{
+        item.name
+      }}</RouterLink>
+    </div>
+    <div style="height: 2rem"></div>
+    <!-- <header>
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
     <div class="wrapper">
@@ -23,13 +25,20 @@ import router from './router'
     </div>
   </header>
 -->
-  <RouterView />
+    <RouterView />
+  </div>
 </template>
 
 <style scoped>
 header {
   line-height: 1.5;
   max-height: 100vh;
+}
+.top-bar {
+  position: absolute;
+  width: 100%;
+  top: 1rem;
+  left: 1rem;
 }
 
 .logo {
@@ -62,7 +71,7 @@ nav a:first-of-type {
   border: 0;
 }
 
-@media (min-width: 1024px) {
+/* @media (min-width: 1024px) {
   header {
     display: flex;
     place-items: center;
@@ -87,5 +96,5 @@ nav a:first-of-type {
     padding: 1rem 0;
     margin-top: 1rem;
   }
-}
+} */
 </style>
