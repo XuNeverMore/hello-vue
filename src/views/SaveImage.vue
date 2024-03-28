@@ -98,6 +98,14 @@ const url = `https://www.douyin.com/user/MS4wLjABAAAA2JV2IPtw8Pr2LI83gpWHmBQUfj8
   border-radius: 1rem;
   padding: 1rem;
 }
+@media screen and (min-width: 600px) {
+  #wheelContainer {
+    width: 400px;
+    margin: auto;
+    height: 100%;
+  }
+}
+
 * {
   box-sizing: border-box;
 }

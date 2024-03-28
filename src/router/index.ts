@@ -8,6 +8,12 @@ const routes = [
     component: WelcomePage
   },
   {
+    path: '/markdonw_convert',
+    name: 'MarkdownConvert',
+    component: () => import('../views/MarkdownConvert.vue')
+  },
+  { path: '/data_tool', name: 'DataTool', component: () => import('../views/DataTool.vue') },
+  {
     path: '/about',
     name: 'About',
     // route level code-splitting
