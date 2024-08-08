@@ -31,6 +31,11 @@ const routes = [
     name: 'SaveImage',
     component: () => import('../views/SaveImage.vue')
   }
+  // {
+  //   path: '/doc_parser',
+  //   name: 'DocParser',
+  //   component: () => import('../views/DocParser.vue')
+  // }
 ]
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
