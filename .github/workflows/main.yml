@@ -11,11 +11,10 @@ jobs:
         with:
           ref: docs
           token: ${{ secrets.ACCESS_TOKEN }}
-      - name: Merge code from main to docs
-        uses: actions/merge@v2
-        with:
-          base: main
-          head: docs
+      - name: Merge main branch
+        run: |
+          git config --global user.name "chuanting.xu"
+          git config --global user.email "1992xct@gmail.com"   
       - uses: actions/setup-node@v2
         with:
           node-version: 20.x
@@ -24,8 +23,6 @@ jobs:
           npm run build
       - name: Commit and push changes
         run: |
-          git config --global user.name "chuanting.xu"
-          git config --global user.email "1992xct@gmail.com"
           git add -A
           git commit -m "New Build [skip ci]"
           git push
