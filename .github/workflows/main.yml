@@ -1,13 +1,19 @@
 name: Build and Deploy
-on: [push]
+on:
+  push:
+    branches:
+      - main
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: "!contains(github.event.head_commit.message, '[skip ci]')"
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@docs
         with:
           token: ${{ secrets.ACCESS_TOKEN }}
+      - name: Merge code from main to docs
+        run: |
+          git checkout -b docs
+          git merge main
       - uses: actions/setup-node@v2
         with:
           node-version: 20.x
