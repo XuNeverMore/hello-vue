@@ -7,13 +7,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@docs
+      - uses: actions/checkout@v2
         with:
+          ref: docs
           token: ${{ secrets.ACCESS_TOKEN }}
       - name: Merge code from main to docs
-        run: |
-          git checkout -b docs
-          git merge main
+        uses: actions/merge@v2
+        with:
+          base: main
+          head: docs
       - uses: actions/setup-node@v2
         with:
           node-version: 20.x
