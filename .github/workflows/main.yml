@@ -1,17 +1,23 @@
 name: Build and Deploy
 on: [push]
+if: "!contains(github.event.head_commit.message, '[skip ci]')"
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@master
-
-    - name: vuepress-deploy
-      uses: IT4Change/vuepress-build-and-deploy@master
-      env:
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        TARGET_REPO: XuNeverMore/hello-vue
-        TARGET_BRANCH: master
-        BUILD_SCRIPT: yarn && yarn build
-        BUILD_DIR: dist/
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.ACCESS_TOKEN }}
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 20.x
+      - run: |
+          npm i
+          npm run build
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "chuanting.xu"
+          git config --global user.email "1992xct@gmail.com"
+          git add -A
+          git commit -m "New Build [skip ci]"
+          git push
